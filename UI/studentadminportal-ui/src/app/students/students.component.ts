@@ -26,19 +26,23 @@ export class StudentsComponent implements OnInit {
          this.students = successResponse;
          this.dataSource = new MatTableDataSource<Student>(this.students);
 
-        // if (this.matPaginator) {
-        //   this.dataSource.paginator = this.matPaginator;
-        // }
+        if (this.matPaginator) {
+          this.dataSource.paginator = this.matPaginator;
+        }
 
-        // if (this.matSort) {
-        //   this.dataSource.sort = this.matSort;
-        // }
+        if (this.matSort) {
+          this.dataSource.sort = this.matSort;
+        }
         console.log(successResponse);
       },
       (errorResponse: any) => {
         console.log(errorResponse);
       }
     );
+  }
+
+  filterStudents() {
+    this.dataSource.filter = this.filterString.trim().toLowerCase();
   }
 
 }
